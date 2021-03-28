@@ -13,7 +13,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface ConfirmationTokenRepository
         extends
-        MongoRepository<ConfirmationToken, Long> {
+        MongoRepository<ConfirmationToken, String> {
 
     Optional<ConfirmationToken> findByToken(String token);
 

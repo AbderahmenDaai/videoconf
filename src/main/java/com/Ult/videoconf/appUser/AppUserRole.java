@@ -1,6 +1,12 @@
 package com.Ult.videoconf.appUser;
 
-public enum AppUserRole {
-    USER,
-    ADMIN
-}
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "role")
+public enum AppUserRole{
+    ChefReunion,
+    Participant;
+    }
+

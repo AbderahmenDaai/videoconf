@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @Getter
 @Setter
@@ -19,28 +22,22 @@ import java.util.Collection;
 public class AppUser implements UserDetails {
 
 
-    //    @SequenceGenerator(
-//            name = "student_sequence",
-//            sequenceName = "student_sequence",
-//            allocationSize = 1
-//    )
-//    @Id
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "student_sequence"
-//    )
+
     @Id
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
     private String jobTitle;
     private String phone;
     private String imageUrl;
+
+
 
     public AppUser(String firstName,
                    String lastName,
@@ -62,17 +59,12 @@ public class AppUser implements UserDetails {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(appUserRole.name());
+        return Collections.singletonList(authority);
     }
 
     @Override
@@ -99,6 +91,8 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+
 
 
 }
