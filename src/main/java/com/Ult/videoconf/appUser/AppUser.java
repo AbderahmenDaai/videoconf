@@ -1,5 +1,6 @@
 package com.Ult.videoconf.appUser;
 
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,11 +9,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @Getter
 @Setter
@@ -20,7 +19,6 @@ import java.util.Collections;
 @NoArgsConstructor
 @Document(collection = "user")
 public class AppUser implements UserDetails {
-
 
 
     @Id
@@ -38,7 +36,6 @@ public class AppUser implements UserDetails {
     private String imageUrl;
 
 
-
     public AppUser(String firstName,
                    String lastName,
                    String email,
@@ -46,7 +43,8 @@ public class AppUser implements UserDetails {
                    AppUserRole appUserRole,
                    String jobTitle,
                    String phone,
-                   String imageUrl )
+                   String imageUrl
+                   )
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,11 +58,10 @@ public class AppUser implements UserDetails {
 
 
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(appUserRole.name());
-        return Collections.singletonList(authority);
+        return null;
     }
 
     @Override
@@ -91,8 +88,6 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
-
-
 
 
 }

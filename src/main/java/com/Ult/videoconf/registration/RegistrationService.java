@@ -4,6 +4,7 @@ package com.Ult.videoconf.registration;
 import com.Ult.videoconf.appUser.AppUser;
 import com.Ult.videoconf.appUser.AppUserRole;
 import com.Ult.videoconf.appUser.AppUserService;
+import com.Ult.videoconf.groupe.AppUserGroup;
 import com.Ult.videoconf.mail.EmailSender;
 import com.Ult.videoconf.registration.token.ConfirmationToken;
 import com.Ult.videoconf.registration.token.ConfirmationTokenService;
@@ -15,13 +16,13 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-
 public class RegistrationService {
 
     private final AppUserService appUserService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+
 
 
     public String register(RegistrationRequest request) {
@@ -39,11 +40,11 @@ public class RegistrationService {
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
-                        AppUserRole.Participant,
+                        AppUserRole.ADMIN,
                         request.getJobTitle(),
                         request.getPhone(),
-                        request.getImageUrl() )
-        );
+                        request.getImageUrl()
+                ));
 
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(

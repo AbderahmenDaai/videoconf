@@ -1,5 +1,7 @@
 package com.Ult.videoconf.appUser;
 
+import com.Ult.videoconf.groupe.AppGroup;
+import com.Ult.videoconf.groupe.Group;
 import com.Ult.videoconf.registration.token.ConfirmationToken;
 import com.Ult.videoconf.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -39,7 +41,6 @@ public class AppUserService implements UserDetailsService {
                 .isPresent();
 
         if (userExists) {
-
 
             throw new IllegalStateException("email already taken");
         }
