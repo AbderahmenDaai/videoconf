@@ -17,4 +17,16 @@ public class Request {
     private AppGroup groupe;
     private  boolean isconfirmed;
     private boolean isrejected;
+
+    public Request() {
+    }
+
+    public Request(String theme, AppUser sender, AppUser reciver, AppGroup groupe, boolean isconfirmed, boolean isrejected) {
+        this.theme = theme;
+        this.sender = sender;
+        this.reciver = reciver;
+        this.groupe = groupe;
+        this.isconfirmed = isconfirmed;
+        this.isrejected = isrejected;
+    }
 }

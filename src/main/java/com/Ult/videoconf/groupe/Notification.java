@@ -1,9 +1,10 @@
 package com.Ult.videoconf.groupe;
 
-import com.Ult.videoconf.appUser.AppUser;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -15,10 +16,14 @@ public class Notification {
     private String id;
     private String theme;
     private Request request;
+    private LocalDateTime createdAt;
+    private LocalDateTime confirmedAt;
 
-    public Notification(String theme, Request request) {
+    public Notification(String theme, Request request, LocalDateTime createdAt, LocalDateTime confirmedAt) {
         this.theme = theme;
         this.request = request;
+        this.createdAt = createdAt;
+        this.confirmedAt = confirmedAt;
     }
 }
 //joinder group api/creart demande

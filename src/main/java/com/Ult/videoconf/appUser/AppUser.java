@@ -27,7 +27,7 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     private String password;
-
+    private String address;
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;

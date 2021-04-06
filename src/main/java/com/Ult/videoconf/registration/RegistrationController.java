@@ -15,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class RegistrationController {
 
-    @Autowired
-    AppUserRepository userRepository;
+//    @Autowired
+//    AppUserRepository userRepository;
 
 
     private final RegistrationService registrationService;
@@ -31,13 +31,13 @@ public class RegistrationController {
         return registrationService.confirmToken(token);
     }
 
-    @GetMapping(path = "/Allusers")
-    public Object getAllUsers() {
-        System.out.println("------  ok  ------");
-        List<AppUser> users = userRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(users);
+//    @GetMapping(path = "/Allusers")
+//    public Object getAllUsers() {
+//        System.out.println("------  ok  ------");
+//        List<AppUser> users = userRepository.findAll();
+//        return ResponseEntity.status(HttpStatus.OK).body(users);
 
-    }
+//    }
 
 //    @PostMapping(path = "/createUser")
 //    public Object register() {

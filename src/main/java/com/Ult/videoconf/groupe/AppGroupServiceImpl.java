@@ -54,7 +54,6 @@ public class AppGroupServiceImpl implements AppGroupService {
             groupe.setTheme(g.getTheme());
             groups.add(groupe);
         }
-
         return all;
     }
 
@@ -75,11 +74,9 @@ public class AppGroupServiceImpl implements AppGroupService {
         Groupe.save(grp);
     }
 
-
     @Override
     public void deleteAllGroup() {
         Groupe.deleteAll();
     }
-
 
 }

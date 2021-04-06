@@ -1,8 +1,8 @@
 package com.Ult.videoconf.controllers;
 
-import com.Ult.videoconf.groupe.AppGroup;
-import com.Ult.videoconf.groupe.AppGroupServiceImpl;
-import com.Ult.videoconf.groupe.Group;
+import com.Ult.videoconf.appUser.AppUser;
+import com.Ult.videoconf.appUser.AppUserRepository;
+import com.Ult.videoconf.groupe.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "group")
@@ -17,6 +18,15 @@ public class AppGroupController {
 
     @Autowired
     AppGroupServiceImpl serv;
+
+    @Autowired
+    AppGroupRepository appGroupRepository;
+
+    @Autowired
+   AppUserRepository userRepository;
+
+    @Autowired
+    RequestService requestService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -46,8 +56,6 @@ public class AppGroupController {
         AppGroup appGroup = serv.findGroupById(id).get();
         Group group = new Group();
         group.setTheme(appGroup.getTheme());
-
-
         return group;
 
     }
@@ -55,7 +63,8 @@ public class AppGroupController {
     @PutMapping(value= "/update/{group-id}")
     public String update(@PathVariable(value= "group-id") String id, @RequestBody AppGroup g) {
         logger.debug("Updating group with group-id= {}.", id);
-        g.setId("id");
+         
+        g.setId(id);
         serv.updateGroup(g);
         return "Group record for group-id= " + id + " updated.";
     }
@@ -69,8 +78,27 @@ public class AppGroupController {
 
     @DeleteMapping(value= "/deleteall")
     public String deleteAll() {
+
         logger.debug("Deleting all group.");
         serv.deleteAllGroup();
         return "All group records deleted.";
     }
+
+    //TODO Request rejoider to group
+
+    @PostMapping(value="/rejoidergroup")
+    public void rejoiderGroup(@RequestParam String id_user , @RequestParam String id_group){
+        Optional<AppUser> user = userRepository.findById(id_user);
+        Optional<AppGroup> group = appGroupRepository.findById(id_group);
+        if(user.isPresent()||group.isPresent()) {
+            AppGroup group1 = group.get();
+            AppUser user1 = user.get() ;
+          String msg =  requestService.sendRejoinderGroup(user1, group1);
+
+        }
+
+    }
+
+    //TODO
+
 }

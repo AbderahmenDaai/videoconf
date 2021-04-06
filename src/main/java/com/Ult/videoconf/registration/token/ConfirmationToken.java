@@ -32,7 +32,7 @@ public class ConfirmationToken {
 
     private LocalDateTime confirmedAt;
 
-    @DBRef
+
     private AppUser appUser;
 
     public ConfirmationToken(String token,
