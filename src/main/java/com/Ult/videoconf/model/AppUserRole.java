@@ -1,4 +1,4 @@
-package com.Ult.videoconf.appUser;
+package com.Ult.videoconf.model;
 
 
 public enum AppUserRole{

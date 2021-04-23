@@ -1,10 +1,8 @@
 package com.Ult.videoconf.security.config;
 
 
-import com.Ult.videoconf.appUser.AppUserService;
-import com.Ult.videoconf.security.PasswordEncoder;
+import com.Ult.videoconf.services.AppUserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/group/**","/testUsers/**","/api/v*/registration/**")
+                .antMatchers("/group/**","/users/**","/api/v*/registration/**","/api/v1/singup")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()

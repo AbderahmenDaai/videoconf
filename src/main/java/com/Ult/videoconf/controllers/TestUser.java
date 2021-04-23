@@ -1,8 +1,8 @@
 package com.Ult.videoconf.controllers;
 
 
-import com.Ult.videoconf.appUser.AppUser;
-import com.Ult.videoconf.appUser.AppUserRepository;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.repositotry.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

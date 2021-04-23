@@ -1,11 +1,10 @@
-package com.Ult.videoconf.registration.token;
+package com.Ult.videoconf.model;
 
-import com.Ult.videoconf.appUser.AppUser;
+import com.Ult.videoconf.model.AppUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -34,6 +33,7 @@ public class ConfirmationToken {
 
 
     private AppUser appUser;
+
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,

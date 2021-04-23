@@ -1,7 +1,7 @@
 package com.Ult.videoconf.controllers;
 
-import com.Ult.videoconf.appUser.AppUser;
-import com.Ult.videoconf.appUser.AppUserRepository;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.repositotry.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +15,7 @@ public class AdminController {
 
     @PutMapping("updateuser/")
     public AppUser UpdateUser (@RequestBody AppUser user){
-
+    user.setEnabled(true);
         AppUser newuser = userRepository.save(user);
 
         return newuser;

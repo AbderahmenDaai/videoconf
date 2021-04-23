@@ -1,8 +1,8 @@
 package com.Ult.videoconf.controllers;
 
-import com.Ult.videoconf.appUser.AppUser;
-import com.Ult.videoconf.appUser.AppUserRepository;
-import com.Ult.videoconf.registration.RegistrationService;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.repositotry.AppUserRepository;
+import com.Ult.videoconf.services.RegistrationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,26 +35,6 @@ public class UserController {
 
     }
 
-//    @GetMapping("/User")
-//    public ResponseEntity<List<AppUser>> getAllUsers(@RequestParam(required = false) String email) {
-
-//        try {
-//            List<AppUser> users = new ArrayList<AppUser>();
-//
-//            if (email == null)
-//                userRepository.findAll().forEach(users::add);
-//            else
-//                userRepository.findByEmail(email).forEach(users::add);
-//
-//            if (users.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//
-//            return new ResponseEntity<>(users, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-
     @GetMapping("/{id}")
     public ResponseEntity<AppUser> getUserById(@PathVariable("id") String id) {
 
@@ -73,12 +53,21 @@ public class UserController {
 
         try {
             AppUser _user = userRepository.save(new AppUser(user.getFirstName(),user.getLastName(),
-                    user.getEmail(), user.getPassword(),user.getAppUserRole(), user.getJobTitle(),
-                    user.getPhone(),user.getImageUrl()));
+                    user.getEmail(), user.getPassword(),user.getAddress(),
+                    user.getAppUserRole(),user.getJobTitle(),user.getMobile(),user.getImage()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @PutMapping("/updateuser")
+    public AppUser UpdateUser (@RequestBody AppUser user) {
+//        user.setLocked(true);
+        user.setEnabled(true);
+        AppUser newuser = userRepository.save(user);
+
+        return newuser;
     }
 }

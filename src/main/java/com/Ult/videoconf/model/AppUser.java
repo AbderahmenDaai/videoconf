@@ -1,4 +1,4 @@
-package com.Ult.videoconf.appUser;
+package com.Ult.videoconf.model;
 
 
 import lombok.EqualsAndHashCode;
@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,29 +23,56 @@ import java.util.Collection;
 public class AppUser implements UserDetails {
 
 
-    @Id
+
+
+	@Id
     private String id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String password;
+
     private String address;
+
+
+
     private AppUserRole appUserRole;
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
+
+    @NotBlank
+    @Size(max = 20)
     private String jobTitle;
-    private String phone;
-    private String imageUrl;
+
+    @NotBlank
+    @Size(max = 20)
+    private String mobile;
+
+
+    @Size(max = 20)
+    private String image;
+
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
+    private boolean isEnabled;
+
+    private List<Authority> authorities;
 
 
     public AppUser(String firstName,
                    String lastName,
                    String email,
                    String password,
+                   String address,
                    AppUserRole appUserRole,
                    String jobTitle,
-                   String phone,
-                   String imageUrl
+                   String mobile,
+                   String image
                    )
     {
         this.firstName = firstName;
@@ -52,16 +81,52 @@ public class AppUser implements UserDetails {
         this.password = password;
         this.appUserRole = appUserRole;
         this.jobTitle = jobTitle;
-        this.phone = phone;
-        this.imageUrl = imageUrl;
+        this.mobile = mobile;
+        this.address = address;
+        this.image = image;
     }
 
 
 
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return false;
+//    }
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return authorities;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
@@ -69,25 +134,27 @@ public class AppUser implements UserDetails {
         return null;
     }
 
+
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
+	}
 
-}
+

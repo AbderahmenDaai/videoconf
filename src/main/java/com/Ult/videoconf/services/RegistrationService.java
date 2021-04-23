@@ -1,13 +1,13 @@
-package com.Ult.videoconf.registration;
+package com.Ult.videoconf.services;
 
 
-import com.Ult.videoconf.appUser.AppUser;
-import com.Ult.videoconf.appUser.AppUserRole;
-import com.Ult.videoconf.appUser.AppUserService;
-import com.Ult.videoconf.groupe.AppUserGroup;
-import com.Ult.videoconf.mail.EmailSender;
-import com.Ult.videoconf.registration.token.ConfirmationToken;
-import com.Ult.videoconf.registration.token.ConfirmationTokenService;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.model.AppUserRole;
+import com.Ult.videoconf.registration.EmailValidator;
+import com.Ult.videoconf.registration.RegistrationRequest;
+import com.Ult.videoconf.repositotry.EmailSender;
+import com.Ult.videoconf.model.ConfirmationToken;
+import com.Ult.videoconf.repositotry.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
-
+    private final ConfirmationTokenRepository confirmationTokenRepository;
 
 
     public String register(RegistrationRequest request) {
@@ -40,10 +40,11 @@ public class RegistrationService {
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
+                        request.getAddress(),
                         AppUserRole.ADMIN,
                         request.getJobTitle(),
-                        request.getPhone(),
-                        request.getImageUrl()
+                        request.getMobile(),
+                        request.getImage()
                 ));
 
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
@@ -72,9 +73,12 @@ public class RegistrationService {
             throw new IllegalStateException("token expired");
         }
 
-        confirmationTokenService.setConfirmedAt(token);
-        appUserService.enableAppUser(
-                confirmationToken.getAppUser().getEmail());
+//        confirmationTokenService.setConfirmedAt(token);
+        ConfirmationToken cfToken = confirmationTokenRepository.findByToken(token).get();
+        cfToken.setConfirmedAt( LocalDateTime.now());
+        confirmationTokenRepository.save(cfToken);
+//        appUserService.enableAppUser(
+//                confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }
 

@@ -1,6 +1,8 @@
-package com.Ult.videoconf.registration.token;
+package com.Ult.videoconf.services;
 
 
+import com.Ult.videoconf.model.ConfirmationToken;
+import com.Ult.videoconf.repositotry.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

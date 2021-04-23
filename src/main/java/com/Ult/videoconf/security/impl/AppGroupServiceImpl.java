@@ -1,7 +1,11 @@
-package com.Ult.videoconf.groupe;
+package com.Ult.videoconf.security.impl;
 
-import com.Ult.videoconf.appUser.AppUser;
-import com.Ult.videoconf.appUser.AppUserRepository;
+import com.Ult.videoconf.model.AppGroup;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.repositotry.AppGroupRepository;
+import com.Ult.videoconf.repositotry.AppGroupService;
+import com.Ult.videoconf.repositotry.AppUserRepository;
+import com.Ult.videoconf.model.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

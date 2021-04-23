@@ -1,6 +1,6 @@
-package com.Ult.videoconf.appUser;
+package com.Ult.videoconf.repositotry;
 
-import com.Ult.videoconf.groupe.AppGroup;
+import com.Ult.videoconf.model.AppUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,12 +20,14 @@ public interface AppUserRepository extends MongoRepository<AppUser, String> {
     @Transactional
 
     @Query("UPDATE AppUser a " +
-            "SET a.enabled = TRUE WHERE a.email = ?1")
+            "SET a.enabled = TRUE WHERE a.email = ?1" )
     int enableAppUser(String email);
 
 
+    @Query("{username : ?0}")
+    AppUser findByUsername(String username);
 
-//    List<AppUser> findAll();
-//
-//    Collection<AppUser> getAllUsers();
+
+
+
 }

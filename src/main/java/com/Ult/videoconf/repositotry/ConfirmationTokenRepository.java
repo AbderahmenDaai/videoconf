@@ -1,6 +1,7 @@
-package com.Ult.videoconf.registration.token;
+package com.Ult.videoconf.repositotry;
 
 
+import com.Ult.videoconf.model.ConfirmationToken;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,9 +19,7 @@ public interface ConfirmationTokenRepository
     Optional<ConfirmationToken> findByToken(String token);
 
     @Transactional
-    @Query("UPDATE ConfirmationToken c " +
-            "SET c.confirmedAt = ?2 " +
-            "WHERE c.token = ?1")
+    @Query("{_id: 606c4c044df08a450b50e161}, {$set: {Score:89}}")
     int updateConfirmedAt(String token,
                           LocalDateTime confirmedAt);
 }

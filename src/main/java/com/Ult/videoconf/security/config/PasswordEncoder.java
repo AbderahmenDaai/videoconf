@@ -1,4 +1,4 @@
-package com.Ult.videoconf.security;
+package com.Ult.videoconf.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

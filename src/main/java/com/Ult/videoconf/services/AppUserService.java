@@ -1,9 +1,8 @@
-package com.Ult.videoconf.appUser;
+package com.Ult.videoconf.services;
 
-import com.Ult.videoconf.groupe.AppGroup;
-import com.Ult.videoconf.groupe.Group;
-import com.Ult.videoconf.registration.token.ConfirmationToken;
-import com.Ult.videoconf.registration.token.ConfirmationTokenService;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.model.ConfirmationToken;
+import com.Ult.videoconf.repositotry.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,6 @@
-package com.Ult.videoconf.groupe;
+package com.Ult.videoconf.repositotry;
+
+import com.Ult.videoconf.model.AppGroup;
 
 import java.util.Collection;
 import java.util.List;

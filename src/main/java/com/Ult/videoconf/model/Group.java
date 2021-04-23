@@ -1,6 +1,5 @@
-package com.Ult.videoconf.groupe;
+package com.Ult.videoconf.model;
 
-import com.Ult.videoconf.appUser.AppUser;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

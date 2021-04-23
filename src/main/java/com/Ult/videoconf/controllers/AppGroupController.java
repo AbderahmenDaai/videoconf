@@ -1,8 +1,12 @@
 package com.Ult.videoconf.controllers;
 
-import com.Ult.videoconf.appUser.AppUser;
-import com.Ult.videoconf.appUser.AppUserRepository;
-import com.Ult.videoconf.groupe.*;
+import com.Ult.videoconf.model.AppGroup;
+import com.Ult.videoconf.model.AppUser;
+import com.Ult.videoconf.repositotry.AppGroupRepository;
+import com.Ult.videoconf.repositotry.AppUserRepository;
+import com.Ult.videoconf.model.Group;
+import com.Ult.videoconf.security.impl.AppGroupServiceImpl;
+import com.Ult.videoconf.services.RequestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +18,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "group")
-public class AppGroupController {
+public class
+AppGroupController {
 
     @Autowired
     AppGroupServiceImpl serv;
@@ -63,7 +68,7 @@ public class AppGroupController {
     @PutMapping(value= "/update/{group-id}")
     public String update(@PathVariable(value= "group-id") String id, @RequestBody AppGroup g) {
         logger.debug("Updating group with group-id= {}.", id);
-         
+
         g.setId(id);
         serv.updateGroup(g);
         return "Group record for group-id= " + id + " updated.";
@@ -98,7 +103,5 @@ public class AppGroupController {
         }
 
     }
-
-    //TODO
 
 }

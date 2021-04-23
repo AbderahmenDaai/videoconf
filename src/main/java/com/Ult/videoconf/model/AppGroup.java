@@ -1,6 +1,6 @@
-package com.Ult.videoconf.groupe;
+package com.Ult.videoconf.model;
 
-import com.Ult.videoconf.appUser.AppUser;
+import com.Ult.videoconf.model.AppUser;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

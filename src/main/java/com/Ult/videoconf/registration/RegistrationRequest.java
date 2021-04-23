@@ -15,8 +15,11 @@ public class RegistrationRequest {
     private final String lastName;
     private final String email;
     private final String password;
+    private final String address;
+    private final String subject;
     private final String jobTitle;
-    private final String phone;
-    private final String imageUrl;
+    private final String mobile;
+    private final String image;
+
 
 }

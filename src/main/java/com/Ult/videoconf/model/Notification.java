@@ -1,5 +1,6 @@
-package com.Ult.videoconf.groupe;
+package com.Ult.videoconf.model;
 
+import com.Ult.videoconf.model.Request;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,15 +27,4 @@ public class Notification {
         this.confirmedAt = confirmedAt;
     }
 }
-//joinder group api/creart demande
-//body appuser appgroup
-//==> creation demande
-//sender appuser
-//rever chefgroup
-//creation of notification
-//notification theme rquest
-//api gert notification byuser
-//confirmation or reject notific by user
-//api chefruenion is confifimed appuser ==> add user to group
-//
 
